@@ -1,4 +1,7 @@
-Connexion / Inscription
+Documentation :
+
+Refaire les règles de gestion //Alex
+Dictionnaire des données // Alex
 
 
 ------------------------------------------
@@ -7,15 +10,15 @@ Connexion / Inscription
 Gerer le compte d'un admin
       -Ajouter livre
       -Achter un livre
-      -Gerer les évènements(Supprimer/modifier les caractéristique de l'event)
+      -Gerer les évènements(Supprimer/modifier les caractéristique de l'event par l'admin)//
       -
 
-Utilisateur doit  :pouvoir s'inscrire à un événement
+Utilisateur doit  :
+                   (Connexion / Inscription) // Khadija (terminer) à modifier CSS
+                   Rechercher un livre avec des boutons ou pas,gérer la mise en page // Alex
+                   FAire la page des événements (ex :pouvoir s'inscrire à un événement) // Arnaud
+                   Espace personelle // khadija
                    Réserver un livre
-                   Rechercher un livre avec des boutons ou pas
-
-
-
 A propos
 Contact nous
-Accueil compléter
+Accueil (compléter)
