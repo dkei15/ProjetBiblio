@@ -1,0 +1,33 @@
+﻿Règle de gestions :
+//Auteur
+1)Un auteur peut écrire 0 ou plusieurs oeuvres différents
+
+//oeuvres
+2)Une oeuvre possède 0 ou plusieurs exemplaires
+3) Une oeuvre peut être réservée par 0 ou plusieurs adhérents
+4)Une oeuvre peut être commandée par 0 ou plusieurs adhérents
+5)A une oeuvre est associés plusieurs mots-clefs
+
+// Motsclefs
+6) Un mot-clefs appartient à 1 ou plusieurs oeuvres
+
+//exemplaire
+7)Un exemplaire décrit une seule oeuvre
+8)Un exemplaire est édité par un seul éditeur
+9)Un exemplaire peut être emprunté par 0 ou plusieurs adhérents
+10)Un exemplaire se trouve dans 1 seul rayon
+
+// Editeur
+11) Un éditeur édite 1 ou plusieurs exemplaire
+
+// rayon
+12)Un rayon contient 1 ou plusieurs exemplaire
+
+//Adhérent
+13) Un adhérent peut réservé 0 ou plusieurs oeuvres
+14)Un adhérent peut commander 0 ou plusieurs oeuvres
+15)Un adhérent peut participer à plusieurs 0 ou plusieurs conférences
+16) Un adhérent peut emprunter 0 ou plusieurs exemplaire
+
+// Evenements
+Un événement est d'1 seul type
