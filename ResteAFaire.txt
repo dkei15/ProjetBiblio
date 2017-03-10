@@ -1,0 +1,21 @@
+Connexion / Inscription
+
+
+------------------------------------------
+
+
+Gerer le compte d'un admin
+      -Ajouter livre
+      -Achter un livre
+      -Gerer les évènements(Supprimer/modifier les caractéristique de l'event)
+      -
+
+Utilisateur doit  :pouvoir s'inscrire à un événement
+                   Réserver un livre
+                   Rechercher un livre avec des boutons ou pas
+
+
+
+A propos
+Contact nous
+Accueil compléter
