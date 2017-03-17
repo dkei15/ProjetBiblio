@@ -26,8 +26,10 @@
 //Adhérent
 13) Un adhérent peut réservé 0 ou plusieurs oeuvres
 14)Un adhérent peut commander 0 ou plusieurs oeuvres
-15)Un adhérent peut participer à plusieurs 0 ou plusieurs conférences
+15)Un adhérent peut participer à 0 ou plusieurs conférences
 16) Un adhérent peut emprunter 0 ou plusieurs exemplaire
 
 // Evenements
-Un événement est d'1 seul type
+17) Un événement est d'1 seul type (projection, conference, exposition ou spectacle)
+18) Un événement à 1 ou plusieurs themes
+18) Une projection projette 1 oeuvre
