@@ -31,5 +31,5 @@
 
 // Evenements
 17) Un événement est d'1 seul type (projection, conference, exposition ou spectacle)
-18) Un événement à 1 ou plusieurs themes
+18) Un événement à 0 ou plusieurs themes
 18) Une projection projette 1 oeuvre
