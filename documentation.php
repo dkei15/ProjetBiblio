@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'cookie.php';
 ?>
 <html>
 <head>
@@ -42,89 +43,37 @@ session_start();
 			<div id="contents">
 			<div class="background">
 			<div id="news" position:absolute>
+					<?php
 
+					// Connexion à la base donnée et affiche si elle a réussi ou pas
+					// IL FAUDRA PAR LA SUITE POUR CHAQUE REQUETE , UTILISER MYSQLI
+					$mysqli = new mysqli("localhost","root","","Biblio");
+					if ($mysqli->connect_errno) {
+							echo "Echec lors de la connexion à MySQL : (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+					}
+
+
+						if(isset($_SESSION['message']))
+						{
+							 echo "<div username='error_msg'>".$_SESSION['message']."</div>";
+							 unset($_SESSION['message']);
+						}
+					?>
+
+					<?php
+					$_SESSION['deja']=0;
+						if(!isset($_SESSION['username'])) { echo "<a class='connexion' href='connexion.php'>Connexion</a>" ;  }
+						else { echo "<a class='connexion' href='deconnexion.php'>Deconnexion</a>"; }
+					?>
 					<div position: fixed>
-					  <form class="form-search" name="search_form" method="post" id="searchform" action="documentation.php">
-  	         <input type="search" pattern="[a-z]*"" value="" placeholder="Nom d'une oeuvre..." name="s" id="seaRch" />
+					  <form class="form-search" name="search_form" method="post" id="searchform" action="documentationSearch.php">
+  	         <input type="text" value="" placeholder="Nom d'une oeuvre..." name="s"  />
   	          <input class="btn" type="submit" name="submit" id="searchsubmit" value="Trouver"/>
             </form>
 					</div>
 
 
-					<div class=centre >
-					<?php
 
-					/*if($_POST['s']==""){
-						$afficheAucun=1;
-						unset($_POST['s']);
-					}*/
-			/*		$resultat="SELECT COUNT(*) as nbreOeuvre FROM Oeuvre" ;
-					$res = $mysqli->query($resultat) or die();
-					$data=mysqli_fetch_assoc($res);
-					$nbOeuvre=$data['nbreOeuvre'];*/
-
-				//		echo "<p>".$nbOeuvre." </p>"; // FONCTIONNE
-
-					$perPage=2; // nombre d'article par page
-					//$cPage=1; // numero de la page courante
-
-
-
-
-					if(isset($_GET['p']) && $_GET['p']>0 && $_GET['p']<$nbPage){
-						$cPage=$_GET['p'];
-					}else {
-						$cPage=1;
-					}
-					// Ajouter IdAuteur pour montrer les auteurs
-
-					$resultat2="SELECT  titreOeuvre, Cote , TypeOeuvre FROM Oeuvre as OeuvreIdMot WHERE OeuvreIdMot.cote IN( SELECT cote FROM appartient as TablAp WHERE TablAp.id_Mot IN ( SELECT IdMOTclefs.id_Mot FROM mot_clefs as IdMOTclefs WHERE nom like '%".$_POST['s']."%')) LIMIT ".(($cPage-1)*$perPage).",".$perPage.";";
-					$res2 = $mysqli->query($resultat2) or die();
-					$ret=mysqli_fetch_assoc($res2);
-					if(isset($ret)){
-
-						/*Rajouter le fait de mettre une phrase*/
-						echo "<p> Oeuvre trouvée </p>";
-
-						echo"<table>";
-						echo"<tr>";
-						echo " <th> Titre </th>";
-						echo " <th> ISBN </th>";
-						echo " <th> Genre </th>";
-						echo"</tr>";
-						$nbreOeuvre2=0;
-						while($ret=mysqli_fetch_assoc($res2)){
-							echo"<tr>";
-							echo "<td>".$ret['titreOeuvre']."</td>";
-							echo "<td>".$ret['Cote']."</td>";
-							echo "<td>".$ret['TypeOeuvre']."</td>";
-							echo"</tr>";
-							$nbreOeuvre2++;
-						}
-						echo"</table>";
-
-						echo "</div>";
-					}else {
-						echo "<p> Aucun résultats ne correspond à votre recherche </p>";
-					}
-						?>
-			</div>
-			<?php
-
-			echo "<div id=toutEnBas >";
-			for($i=1;$i<$nbreOeuvre2;$i++){ // Pour faire les pages
-			 if	($i==1){
-						echo "";
-				}else if($i==$cPage){
-							echo " $i /" ;
-				}else {
-						echo " <a href=\"documentation.php?p=$i\">$i</a> /";
-					}
-				}
-				echo "</div>";
-		 ?>
-
-		</div>
 	</div>
 </body>
 </html>
