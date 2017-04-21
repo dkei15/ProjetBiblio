@@ -4,27 +4,12 @@ session_start();
 $db=mysqli_connect("localhost","root","","biblio");
 
 $user_id = 1;
-$tab_eve = [];
 
 if( isset($_POST) && !empty($_POST) ) {
 	//var_dump($_POST);
-	if($_POST['inscrit']) {
-		mysqli_query($db, 'DELETE FROM `participe` WHERE `IdAdherent` = '. $user_id .' AND `NumEv` = '. $_POST['id'] );
-		mysqli_query($db, 'UPDATE evenement SET CapaciteEv = CapaciteEv + 1 WHERE NumEV = ' . $_POST['id'] );
-	}
-	else {
-		mysqli_query($db, 'INSERT INTO `participe` (`IdAdherent`, `NumEv`) VALUES ('. $user_id .', '. $_POST['id'] .')');
-		mysqli_query($db, 'UPDATE evenement SET CapaciteEv = CapaciteEv - 1 WHERE NumEV = ' . $_POST['id'] );
-	}
+	mysqli_query($db, 'INSERT INTO `evenement` (`NumEv`, `DateEv`, `LieuEv`, `CapaciteEv`) VALUES (NULL, "'. $_POST['date'] .'", "'. $_POST['lieu'] .'", '. $_POST['capacite'] .')');
+	header("location:evenement.php");
 }
-
-$reponse = mysqli_query($db, 'SELECT NumEv FROM participe WHERE idAdherent = ' . $user_id);
-$row = mysqli_fetch_all($reponse, MYSQLI_ASSOC);
-foreach ($row as $value) {
-	array_push($tab_eve, $value['NumEv']);
-}
-
-//var_dump($tab_eve);
 
 ?>
 <!DOCTYPE html>
@@ -75,34 +60,24 @@ foreach ($row as $value) {
 					<header>
 						<h1 class ="h1">Evenement</h1>
 					</header>
-					  <?php
-					  $reponse = mysqli_query($db, 'SELECT * FROM evenement');
-					  $row = mysqli_fetch_all($reponse, MYSQLI_ASSOC);
-					  foreach ($row as $donnees) {
-					  ?>
-						<form method="post">
-						  <h4><strong>Evenement</strong> : <?php echo $donnees['NumEv']; ?></h4>
-						  <input type="hidden" name="id" id="id" value="<?php echo $donnees['NumEv']; ?>" />
-						  <p>
-							  <?php echo $donnees['DateEv']; ?><br />
-							  <?php echo $donnees['LieuEv']; ?><br />
-							  <?php echo $donnees['CapaciteEv']; ?>
-						  </p>
-						  <?php if(isset($_SESSION['username'])) {
-							  if(!in_array($donnees['NumEv'],$tab_eve) && $donnees['CapaciteEv'] > 0) {
-								echo '<input class="login" type="submit" value="S\'inscrire">';
-								echo '<input type="hidden" name="inscrit" id="inscrit" value="0" />';
-							  }
-							  else {
-								echo '<input class="login" type="submit" value="Se désinscrire">';
-								echo '<input type="hidden" name="inscrit" id="inscrit" value="1" />';
-							  }
-							}?>
-						</form>
-						<hr>
-					  <?php
-					  }
-					  ?>
+					<form method="post">
+					   <h4><label for="nom">Nom :</label></h4>
+					   <input type="text" name="nom" id="nom" />
+					   </br>
+					   <h4><label for="description">Description :</label></h4>
+					   <input type="text" name="description" id="description" />
+					   </br>
+					   <h4><label for="lieu">Lieu :</label></h4>
+					   <input type="text" name="lieu" id="lieu" />
+					   </br>
+					   <h4><label for="date">Date :</label></h4>
+					   <input type="date" name="date" id="date" />
+					   </br>
+					   <h4><label for="capacite">Capacité :</label></h4>
+					   <input type="number" name="capacite" id="capacite" />
+					   </br>
+					   <input class="login" type="submit" value="Ajouter">
+					</form>
 				</div>
 			</div>
 		</div>
