@@ -16,6 +16,7 @@ if( isset($_POST) && !empty($_POST) ) {
 		mysqli_query($db, 'INSERT INTO `participe` (`IdAdherent`, `NumEv`) VALUES ('. $user_id .', '. $_POST['id'] .')');
 		mysqli_query($db, 'UPDATE evenement SET CapaciteEv = CapaciteEv - 1 WHERE NumEV = ' . $_POST['id'] );
 	}
+	header("Location: ".$_SERVER["PHP_SELF"]);
 }
 //var_dump($tab_eve);
 if(!empty($_SESSION)) {
@@ -29,7 +30,7 @@ if(!empty($_SESSION)) {
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Contactez-Nous</title>
+	<title>Evènements</title>
 	<META NAME="Author" LANG="fr" CONTENT="Khadija MOUSTAINE"> 
 	<META NAME="Publisher" CONTENT="Khadija MOUSTAINE"> 
 	<META NAME="Reply-to" CONTENT="moustaine-khadija@hotmail.fr (Khadija MOUSTAINE)">
