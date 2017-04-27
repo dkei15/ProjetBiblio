@@ -43,16 +43,16 @@ if( isset($_POST) && !empty($_POST) ) {
 	<link rel="stylesheet" href="css/connexion.css" type="text/css">
 	<style type="text/css">
 	label{
-    display: block;
-    margin: 0px 0px 0px 0px;
+		display: block;
+		margin: 0px 0px 0px 0px;
 	}
 	label > span{
 		color: #0d1639;
-    width: 150px;
-    font-weight: bold;
-    float: left;
-    padding-top: 8px;
-    padding-left: 10px;
+		width: 150px;
+		font-weight: bold;
+		float: left;
+		padding-top: 8px;
+		padding-left: 10px;
 	}
 	</style>
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/flick/jquery-ui.css" type="text/css">
@@ -126,58 +126,62 @@ if( isset($_POST) && !empty($_POST) ) {
 					<header>
 						<h1 class ="h1">Ajout d'évènement</h1>
 					</header>
-					<form method="post" align="center">
-						<label for="nom"><span>Nom :</span>
-							<input class="textInput" type="text" name="nom" id="nom" />
-						</label>
-						</br>
-
-						<label for="description"><span>Description :</span>
-							<input class="textInput" type="text" name="description" id="description" />
-						</label>
-						</br>
-
-						<label for="lieu"><span>Lieu :</span>
-							<input class="textInput" type="text" name="lieu" id="lieu" />
-						</label>
-						</br>
-
-						<label for="date"><span>Date :</span>
-							<input class="textInput" type="date" name="date" id="datepicker" />
-						</label>
-						</br>
-
-						<label for="capacite"><span>Capacité :</span>
-							<input class="textInput" type="number" name="capacite" id="capacite" />
-						</label>
-						</br>
-
-						<label for="type"><span>Type :</span>
-							<select class="textInput" name="type" id="type">
-								<option value="conference">Conférence</option>
-								<option value="exposition">Exposition</option>
-								<option value="projection">Projection</option>
-								<option value="spectacle">Spectacle</option>
-							</select>
-						</label>
-						</br>
-
-						<div id="option-conference">
-							<label for="capacite"><span>Conférencier :</span>
-								<input class="textInput" type="text" name="conferencier" id="conferencier" />
+					<form method="post" style="margin: 0 auto;" align="center">
+						<div style="margin: 0 auto; width: 360px"">
+							<label for="nom"><span>Nom :</span>
+								<input class="textInput" type="text" name="nom" id="nom" />
 							</label>
 							</br>
-						</div>
 
-						<div id="option-projection" hidden>
-							<label for="capacite"><span>Cote :</span>
-								<input class="textInput" type="number" name="cote" id="cote" />
+							<label for="description"><span>Description :</span>
+								<input class="textInput" type="text" name="description" id="description" />
 							</label>
 							</br>
-						</div>
 
-						</br>
-						<input class="login" type="submit" value="Ajouter">
+							<label for="lieu"><span>Lieu :</span>
+								<input class="textInput" type="text" name="lieu" id="lieu" />
+							</label>
+							</br>
+
+							<label for="date"><span>Date :</span>
+								<input class="textInput" type="date" name="date" id="datepicker" />
+							</label>
+							</br>
+
+							<label for="capacite"><span>Capacité :</span>
+								<input class="textInput" type="number" name="capacite" id="capacite" />
+							</label>
+							</br>
+
+							<label for="type"><span>Type :</span>
+								<select class="textInput" name="type" id="type">
+									<option value="conference">Conférence</option>
+									<option value="exposition">Exposition</option>
+									<option value="projection">Projection</option>
+									<option value="spectacle">Spectacle</option>
+								</select>
+							</label>
+							</br>
+
+							<div id="option-conference">
+								<label for="capacite"><span>Conférencier :</span>
+									<input class="textInput" type="text" name="conferencier" id="conferencier" />
+								</label>
+								</br>
+							</div>
+
+							<div id="option-projection" hidden>
+								<label for="capacite"><span>Cote :</span>
+									<input class="textInput" type="number" name="cote" id="cote" />
+								</label>
+								</br>
+							</div>
+
+							</br>
+							<div align="center">
+								<input class="login" type="submit" value="Ajouter">
+							</div>
+						</div>
 					</form>
 				</div>
 			</div>
