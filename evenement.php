@@ -57,6 +57,7 @@ if( isset($_POST) && !empty($_POST) ) {
 //var_dump($tab_eve);
 if(!empty($_SESSION)) {
 	$reponse = mysqli_query($db, 'SELECT * FROM participe WHERE idAdherent = ' . $user_id);
+	var_dump($reponse);
 	$row = mysqli_fetch_all($reponse, MYSQLI_ASSOC);
 	foreach ($row as $value) {
 		array_push($tab_eve, $value['NumEv']);
