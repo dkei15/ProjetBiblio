@@ -84,9 +84,7 @@ if(!empty($_SESSION)) {
 	// 	array_push($tab_eve, $value['NumEv']);
 	// }
   while ($value = mysqli_fetch_assoc($reponse)) {
-    $all_eve[$value['NumEv']]['nom'] = $value['nom'];
-    $all_eve[$value['NumEv']]['description'] = $value['description'];
-    $all_eve[$value['NumEv']]['type'] = 'Spectacle';
+    array_push($tab_eve, $value['NumEv']);
   }
 }
 ?>
