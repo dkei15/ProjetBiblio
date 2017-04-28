@@ -18,8 +18,8 @@ while ($value = mysqli_fetch_assoc($conference)) {
 }
 while ($value = mysqli_fetch_assoc($exposition)) {
   $all_eve[$value['NumEv']]['nom'] = $value['nom'];
-	$all_eve[$value['NumEv']]['description'] = $value['description'];
-	$all_eve[$value['NumEv']]['type'] = 'Exposition';
+  $all_eve[$value['NumEv']]['description'] = $value['description'];
+  $all_eve[$value['NumEv']]['type'] = 'Exposition';
 }
 while ($value = mysqli_fetch_assoc($projection)) {
   $all_eve[$value['NumEv']]['nom'] = $value['nom'];
@@ -78,11 +78,11 @@ if( isset($_POST) && !empty($_POST) ) {
 }
 //var_dump($tab_eve);
 if(!empty($_SESSION)) {
-	$reponse = mysqli_query($db, 'SELECT * FROM participe WHERE idAdherent = ' . $user_id);
-	// $row = mysqli_fetch_all($reponse, MYSQLI_ASSOC);
-	// foreach ($row as $value) {
-	// 	array_push($tab_eve, $value['NumEv']);
-	// }
+  $reponse = mysqli_query($db, 'SELECT * FROM participe WHERE idAdherent = ' . $user_id);
+  // $row = mysqli_fetch_all($reponse, MYSQLI_ASSOC);
+  // foreach ($row as $value) {
+  // 	array_push($tab_eve, $value['NumEv']);
+  // }
   while ($value = mysqli_fetch_assoc($reponse)) {
     array_push($tab_eve, $value['NumEv']);
   }
