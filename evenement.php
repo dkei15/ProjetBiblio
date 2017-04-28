@@ -6,6 +6,7 @@ $tab_eve = [];
 $all_eve = [];
 
 $conference = mysqli_query($db, 'SELECT * FROM evenement INNER JOIN conference ON evenement.NumEv = conference.NumEv');
+var_dump($conference);
 $exposition = mysqli_query($db, 'SELECT * FROM evenement INNER JOIN exposition ON evenement.NumEv = exposition.NumEv');
 $projection = mysqli_query($db, 'SELECT * FROM evenement INNER JOIN projection ON evenement.NumEv = projection.NumEv');
 $spectacle = mysqli_query($db, 'SELECT * FROM evenement INNER JOIN spectacle ON evenement.NumEv = spectacle.NumEv');
@@ -57,7 +58,6 @@ if( isset($_POST) && !empty($_POST) ) {
 //var_dump($tab_eve);
 if(!empty($_SESSION)) {
 	$reponse = mysqli_query($db, 'SELECT * FROM participe WHERE idAdherent = ' . $user_id);
-	var_dump($reponse);
 	$row = mysqli_fetch_all($reponse, MYSQLI_ASSOC);
 	foreach ($row as $value) {
 		array_push($tab_eve, $value['NumEv']);
@@ -68,8 +68,8 @@ if(!empty($_SESSION)) {
 <head>
 	<meta charset="UTF-8">
 	<title>Evènements</title>
-	<META NAME="Author" LANG="fr" CONTENT="Khadija MOUSTAINE"> 
-	<META NAME="Publisher" CONTENT="Khadija MOUSTAINE"> 
+	<META NAME="Author" LANG="fr" CONTENT="Khadija MOUSTAINE">
+	<META NAME="Publisher" CONTENT="Khadija MOUSTAINE">
 	<META NAME="Reply-to" CONTENT="moustaine-khadija@hotmail.fr (Khadija MOUSTAINE)">
 	<META NAME="Language" CONTENT="fr">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -113,26 +113,26 @@ if(!empty($_SESSION)) {
 	</script>
 </head>
 <body>
-	<div id="page">	
+	<div id="page">
 		<div id="header">
-			<?php 
+			<?php
 			if(!isset($_SESSION['username'])) {
-				echo "<a class='contact' href='inscription.php'>S'inscrire</a>" ;  
-			} 
+				echo "<a class='contact' href='inscription.php'>S'inscrire</a>" ;
+			}
 			else{
-				echo ""; 
-			} 
+				echo "";
+			}
 			?>
-			<?php 
+			<?php
 				if(!isset($_SESSION['username'])) {
-					echo "<a class='connexion-index' href='connexion.php'>Connexion</a>" ;  
-				} 
-				else {
-					echo "<a class='Deconnexion-index' href='deconnexion.php'>Deconnexion</a>"; 
+					echo "<a class='connexion-index' href='connexion.php'>Connexion</a>" ;
 				}
-			?> 
+				else {
+					echo "<a class='Deconnexion-index' href='deconnexion.php'>Deconnexion</a>";
+				}
+			?>
 			<a href="index.php" id="logo"><img src="images/logo.jpg" widtht= "250" height = "150"  alt="LOGO"> </a>
-			
+
 			<ul id="navigation">
 				<li class="selected">
 					<a href="index.php" title="Home"></a>
@@ -151,7 +151,7 @@ if(!empty($_SESSION)) {
 				</li>
 				<li class="last-child">
 					<a href="contact.php">Contact nous</a>
-				</li>                         
+				</li>
 			</ul>
 		</div>
 		<div id="contents">
