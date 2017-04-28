@@ -6,37 +6,59 @@ $tab_eve = [];
 $all_eve = [];
 
 $conference = mysqli_query($db, 'SELECT * FROM evenement INNER JOIN conference ON evenement.NumEv = conference.NumEv');
-var_dump($conference);
+// var_dump($conference);
 $exposition = mysqli_query($db, 'SELECT * FROM evenement INNER JOIN exposition ON evenement.NumEv = exposition.NumEv');
 $projection = mysqli_query($db, 'SELECT * FROM evenement INNER JOIN projection ON evenement.NumEv = projection.NumEv');
 $spectacle = mysqli_query($db, 'SELECT * FROM evenement INNER JOIN spectacle ON evenement.NumEv = spectacle.NumEv');
 
-$row = mysqli_fetch_all($conference, MYSQLI_ASSOC);
-foreach ($row as $value) {
-	$all_eve[$value['NumEv']]['nom'] = $value['nom'];
-	$all_eve[$value['NumEv']]['description'] = $value['description'];
-	$all_eve[$value['NumEv']]['conferencier'] = $value['conferencier'];
-	$all_eve[$value['NumEv']]['type'] = 'Conférence';
+while ($value = mysqli_fetch_assoc($conference)) {
+  $all_eve[$value['NumEv']]['nom'] = $value['nom'];
+  $all_eve[$value['NumEv']]['description'] = $value['description'];
+  $all_eve[$value['NumEv']]['conferencier'] = $value['conferencier'];
+  $all_eve[$value['NumEv']]['type'] = 'Conférence';
 }
-$row = mysqli_fetch_all($exposition, MYSQLI_ASSOC);
-foreach ($row as $value) {
-	$all_eve[$value['NumEv']]['nom'] = $value['nom'];
+while ($value = mysqli_fetch_assoc($exposition)) {
+  $all_eve[$value['NumEv']]['nom'] = $value['nom'];
 	$all_eve[$value['NumEv']]['description'] = $value['description'];
 	$all_eve[$value['NumEv']]['type'] = 'Exposition';
 }
-$row = mysqli_fetch_all($projection, MYSQLI_ASSOC);
-foreach ($row as $value) {
-	$all_eve[$value['NumEv']]['nom'] = $value['nom'];
-	$all_eve[$value['NumEv']]['description'] = $value['description'];
-	$all_eve[$value['NumEv']]['cote'] = $value['cote'];
-	$all_eve[$value['NumEv']]['type'] = 'Projection';
+while ($value = mysqli_fetch_assoc($projection)) {
+  $all_eve[$value['NumEv']]['nom'] = $value['nom'];
+  $all_eve[$value['NumEv']]['description'] = $value['description'];
+  $all_eve[$value['NumEv']]['cote'] = $value['cote'];
+  $all_eve[$value['NumEv']]['type'] = 'Projection';
 }
-$row = mysqli_fetch_all($spectacle, MYSQLI_ASSOC);
-foreach ($row as $value) {
-	$all_eve[$value['NumEv']]['nom'] = $value['nom'];
-	$all_eve[$value['NumEv']]['description'] = $value['description'];
-	$all_eve[$value['NumEv']]['type'] = 'Spectacle';
+while ($value = mysqli_fetch_assoc($spectacle)) {
+  $all_eve[$value['NumEv']]['nom'] = $value['nom'];
+  $all_eve[$value['NumEv']]['description'] = $value['description'];
+  $all_eve[$value['NumEv']]['type'] = 'Spectacle';
 }
+//$row = mysqli_fetch_all($conference, MYSQLI_ASSOC);
+// foreach ($row as $value) {
+// 	$all_eve[$value['NumEv']]['nom'] = $value['nom'];
+// 	$all_eve[$value['NumEv']]['description'] = $value['description'];
+// 	$all_eve[$value['NumEv']]['conferencier'] = $value['conferencier'];
+// 	$all_eve[$value['NumEv']]['type'] = 'Conférence';
+// }
+// $row = mysqli_fetch_all($exposition, MYSQLI_ASSOC);
+// foreach ($row as $value) {
+// 	$all_eve[$value['NumEv']]['nom'] = $value['nom'];
+// 	$all_eve[$value['NumEv']]['description'] = $value['description'];
+// 	$all_eve[$value['NumEv']]['type'] = 'Exposition';
+// }
+// $row = mysqli_fetch_all($projection, MYSQLI_ASSOC);
+// foreach ($row as $value) {
+// 	$all_eve[$value['NumEv']]['nom'] = $value['nom'];
+// 	$all_eve[$value['NumEv']]['description'] = $value['description'];
+// 	$all_eve[$value['NumEv']]['cote'] = $value['cote'];
+// 	$all_eve[$value['NumEv']]['type'] = 'Projection';
+// }
+// $row = mysqli_fetch_all($spectacle, MYSQLI_ASSOC);
+// foreach ($row as $value) {
+// 	$all_eve[$value['NumEv']]['nom'] = $value['nom'];
+// 	$all_eve[$value['NumEv']]['description'] = $value['description'];
+// 	$all_eve[$value['NumEv']]['type'] = 'Spectacle';
+// }
 //var_dump($all_eve);
 
 if(!empty($_SESSION)) {
@@ -58,10 +80,15 @@ if( isset($_POST) && !empty($_POST) ) {
 //var_dump($tab_eve);
 if(!empty($_SESSION)) {
 	$reponse = mysqli_query($db, 'SELECT * FROM participe WHERE idAdherent = ' . $user_id);
-	$row = mysqli_fetch_all($reponse, MYSQLI_ASSOC);
-	foreach ($row as $value) {
-		array_push($tab_eve, $value['NumEv']);
-	}
+	// $row = mysqli_fetch_all($reponse, MYSQLI_ASSOC);
+	// foreach ($row as $value) {
+	// 	array_push($tab_eve, $value['NumEv']);
+	// }
+  while ($value = mysqli_fetch_assoc($reponse)) {
+    $all_eve[$value['NumEv']]['nom'] = $value['nom'];
+    $all_eve[$value['NumEv']]['description'] = $value['description'];
+    $all_eve[$value['NumEv']]['type'] = 'Spectacle';
+  }
 }
 ?>
 <html>
@@ -168,12 +195,11 @@ if(!empty($_SESSION)) {
 					<div id="liste-ev">
 						<?php
 						$reponse = mysqli_query($db, 'SELECT * FROM evenement WHERE DateEv > CURRENT_DATE ORDER BY DateEv');
-						$row = mysqli_fetch_all($reponse, MYSQLI_ASSOC);
-						if(empty($row)) {
-							echo '<p style="text-align: center;">Il n\'y a aucun évènement prévu.</p>';
-						}
-						else {
-							foreach ($row as $donnees) {
+						//$row = mysqli_fetch_all($reponse, MYSQLI_ASSOC);
+						// if(empty($row)) {
+						// 	echo '<p style="text-align: center;">Il n\'y a aucun évènement prévu.</p>';
+						// }
+            while ($donnees = mysqli_fetch_assoc($reponse)) {
 						?>
 							<form method="post" >
 								<fieldset>
@@ -205,11 +231,10 @@ if(!empty($_SESSION)) {
 								</fieldset>
 							</form>
 						<?php
-							}
 						}
 						?>
 					</div>
-					<div id="prochain-ev" hidden>
+					<!-- <div id="prochain-ev" hidden>
 						<?php
 						$reponse = mysqli_query($db, 'SELECT * FROM evenement INNER JOIN participe ON evenement.NumEv = participe.NumEv WHERE participe.IdAdherent = ' . $user_id . ' AND evenement.DateEv > CURRENT_DATE ORDER BY evenement.DateEv');
 						$row = mysqli_fetch_all($reponse, MYSQLI_ASSOC);
@@ -281,7 +306,7 @@ if(!empty($_SESSION)) {
 							}
 						}
 						?>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
