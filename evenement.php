@@ -6,7 +6,6 @@ $tab_eve = [];
 $all_eve = [];
 
 $conference = mysqli_query($db, 'SELECT * FROM evenement INNER JOIN conference ON evenement.NumEv = conference.NumEv');
-// var_dump($conference);
 $exposition = mysqli_query($db, 'SELECT * FROM evenement INNER JOIN exposition ON evenement.NumEv = exposition.NumEv');
 $projection = mysqli_query($db, 'SELECT * FROM evenement INNER JOIN projection ON evenement.NumEv = projection.NumEv');
 $spectacle = mysqli_query($db, 'SELECT * FROM evenement INNER JOIN spectacle ON evenement.NumEv = spectacle.NumEv');
@@ -234,15 +233,15 @@ if(!empty($_SESSION)) {
 						}
 						?>
 					</div>
-					<!-- <div id="prochain-ev" hidden>
+					<div id="prochain-ev" hidden>
 						<?php
 						$reponse = mysqli_query($db, 'SELECT * FROM evenement INNER JOIN participe ON evenement.NumEv = participe.NumEv WHERE participe.IdAdherent = ' . $user_id . ' AND evenement.DateEv > CURRENT_DATE ORDER BY evenement.DateEv');
-						$row = mysqli_fetch_all($reponse, MYSQLI_ASSOC);
-						if(empty($row)) {
-							echo '<p style="text-align: center;">Vous n\'avez aucun évènement prévu.</p>';
-						}
-						else {
-							foreach ($row as $donnees) {
+						// $row = mysqli_fetch_all($reponse, MYSQLI_ASSOC);
+						// if(empty($row)) {
+						// 	echo '<p style="text-align: center;">Vous n\'avez aucun évènement prévu.</p>';
+						// }
+						// else {
+						while ($donnees = mysqli_fetch_assoc($reponse)) {
 						?>
 							<form method="post" >
 								<fieldset>
@@ -274,19 +273,18 @@ if(!empty($_SESSION)) {
 								</fieldset>
 							</form>
 						<?php
-							}
 						}
 						?>
 					</div>
 					<div id="passe-ev" hidden>
 						<?php
 						$reponse = mysqli_query($db, 'SELECT * FROM evenement WHERE DateEv < CURRENT_DATE ORDER BY DateEv');
-						$row = mysqli_fetch_all($reponse, MYSQLI_ASSOC);
-						if(empty($row)) {
-							echo '<p style="text-align: center;">Il n\'y a aucun évènement.</p>';
-						}
-						else {
-							foreach ($row as $donnees) {
+						// $row = mysqli_fetch_all($reponse, MYSQLI_ASSOC);
+						// if(empty($row)) {
+						// 	echo '<p style="text-align: center;">Il n\'y a aucun évènement.</p>';
+						// }
+						// else {
+						while ($donnees = mysqli_fetch_assoc($reponse)) {
 						?>
 							<form method="post" >
 								<fieldset>
@@ -303,10 +301,10 @@ if(!empty($_SESSION)) {
 								</fieldset>
 							</form>
 						<?php
-							}
+					
 						}
 						?>
-					</div> -->
+					</div>
 				</div>
 			</div>
 		</div>
