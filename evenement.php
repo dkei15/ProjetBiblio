@@ -38,15 +38,10 @@ foreach ($row as $value) {
 }
 //var_dump($all_eve);
 
-$personnes = array(
-1 => array('prenom' => 'Jessy', 'nom' => 'Brown', 'telephone' => '00001111'),
-2 => array('prenom' => 'Sharon', 'nom' => 'Dain', 'telephone' => '00221111'),
-3 => array('prenom' => 'Marta', 'nom' => 'Blanca', 'telephone' => '003311111')
-);
-
 if(!empty($_SESSION)) {
 	$user_id = $_SESSION['IdAdherent'];
 }
+
 if( isset($_POST) && !empty($_POST) ) {
 	//var_dump($_POST);
 	if($_POST['inscrit']) {
@@ -61,7 +56,7 @@ if( isset($_POST) && !empty($_POST) ) {
 }
 //var_dump($tab_eve);
 if(!empty($_SESSION)) {
-	$reponse = mysqli_query($db, 'SELECT NumEv FROM participe WHERE idAdherent = ' . $user_id);
+	$reponse = mysqli_query($db, 'SELECT * FROM participe WHERE idAdherent = ' . $user_id);
 	$row = mysqli_fetch_all($reponse, MYSQLI_ASSOC);
 	foreach ($row as $value) {
 		array_push($tab_eve, $value['NumEv']);
