@@ -20,16 +20,14 @@
 // Editeur
 11) Un éditeur édite 1 ou plusieurs exemplaire
 
-// rayon
-12)Un rayon contient 1 ou plusieurs exemplaire
 
 //Adhérent
-13) Un adhérent peut réservé 0 ou plusieurs oeuvres
-14)Un adhérent peut commander 0 ou plusieurs oeuvres
-15)Un adhérent peut participer à 0 ou plusieurs conférences
-16) Un adhérent peut emprunter 0 ou plusieurs exemplaire
+12) Un adhérent peut réservé 0 ou plusieurs oeuvres
+13)Un adhérent peut commander 0 ou plusieurs oeuvres
+14)Un adhérent peut participer à 0 ou plusieurs conférences
+15) Un adhérent peut emprunter 0 ou plusieurs exemplaire
 
 // Evenements
-17) Un événement est d'1 seul type (projection, conference, exposition ou spectacle)
-18) Un événement à 0 ou plusieurs themes
+16) Un événement est d'1 seul type (projection, conference, exposition ou spectacle)
+17) Un événement à 0 ou plusieurs themes
 18) Une projection projette 1 oeuvre
