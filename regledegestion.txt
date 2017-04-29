@@ -15,19 +15,17 @@
 7)Un exemplaire décrit une seule oeuvre
 8)Un exemplaire est édité par un seul éditeur
 9)Un exemplaire peut être emprunté par 0 ou plusieurs adhérents
-10)Un exemplaire se trouve dans 1 seul rayon
 
 // Editeur
-11) Un éditeur édite 1 ou plusieurs exemplaire
-
+10) Un éditeur édite 1 ou plusieurs exemplaire
 
 //Adhérent
-12) Un adhérent peut réservé 0 ou plusieurs oeuvres
-13)Un adhérent peut commander 0 ou plusieurs oeuvres
-14)Un adhérent peut participer à 0 ou plusieurs conférences
-15) Un adhérent peut emprunter 0 ou plusieurs exemplaire
+11) Un adhérent peut réservé 0 ou plusieurs oeuvres
+12)Un adhérent peut commander 0 ou plusieurs oeuvres
+13)Un adhérent peut participer à 0 ou plusieurs conférences
+14) Un adhérent peut emprunter 0 ou plusieurs exemplaire
 
 // Evenements
-16) Un événement est d'1 seul type (projection, conference, exposition ou spectacle)
-17) Un événement à 0 ou plusieurs themes
-18) Une projection projette 1 oeuvre
+15) Un événement est d'1 seul type (projection, conference, exposition ou spectacle)
+16) Un événement à 0 ou plusieurs themes
+17) Une projection projette 1 oeuvre
