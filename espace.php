@@ -17,15 +17,7 @@
 	<script>
 	function ajoutPro(){
 		<?php
-		$resultat="UPDATE exemplaire SET Prolongement=1 WHERE NumExmp=".$_SESSION['numexmp']." AND IdAdherent=".$_SESSION['Iden']."" ;
-		$rows=mysqli_query($db,$resultat);
-
-		?>
-
-	}
-	function supprimerReserve(){
-		<?php
-		$resultat="DELETE FROM reserve WHERE NumExmp=".$_SESSION['numexmp']." AND IdAdherent=".$_SESSION['Iden']."" ;
+		$resultat="UPDATE exemplaire SET Prolongement=1, DateRetour=DATE_ADD(DateRetour, INTERVAL 7 DAY) WHERE NumExmp=".$_SESSION['numexmp']." AND IdAdherent=".$_SESSION['Iden']."" ;
 		$rows=mysqli_query($db,$resultat);
 
 		?>
@@ -104,32 +96,33 @@
 											<legend> Contact</legend>
 											<tr>
 												<td width = "150px" height="40px" class="text"><b>Indetifiant :</b></td>
-												<td><b>'.$_SESSION['username'].'</b></td>
+												<td><b><input type="text" name="nom" disabled class="textInput" value='.$_SESSION['username'].'></b></td>
 										 	</tr>
 											<tr>
 												<td width = "150px" height="40px" class="text"><b>Nom :</b> </td>
-												<td><input type="text" name="nom" class="textInput" value='.$_SESSION['nom'].'></td>
+												<td><input type="text" name="nom" disabled class="textInput" value='.$_SESSION['nom'].'></td>
 											</tr>
 											<tr>
 												<td width = "150px" height="40px" class="text"><b>Prenom :</b> </td>
-												<td><input type="text" name="prenom" class="textInput" value='.$_SESSION['prenom'].'></td>
+												<td><input type="text" name="prenom" disabled class="textInput" value='.$_SESSION['prenom'].'></td>
 											</tr>
 											<tr>
 												<td width = "150px" class="text"><b>Email :</b> </td>
-												<td><input type="text" name="email" class="textInput" value='.$_SESSION['mail'].'></td>
+												<td><input type="text" name="email" disabled class="textInput" value='.$_SESSION['mail'].'></td>
 											</tr>
 											<tr>
 												<td width = "150px" height="40px" class="text"><b>Adresse :</b> </td>
-												<td><input type="text" name="adresse" class="textInput" value='.$_SESSION['adresse'].'></td>
+												<td><input type="text" name="adresse" disabled class="textInput1" value='.$_SESSION['adresse'].'></td>
 											</tr>
 											<tr>
 												<td width = "150px" class="text"><b>Portable :</b> </td>
-												<td><input type="tel" maxlength=10 name="portable" class="textInput" value='.$_SESSION['tel'].'></td>
+												<td><input type="tel" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" name="portable" disabled class="textInput" value='.$_SESSION['tel'].'></td>
 											</tr>
 											<tr>
 												<td width = "150px"class="text" ><b>Née le  :</b></td>
-												<td><input type="text" name="age" class="textInput" value='.date_format($date,"d/m/Y").'></td>
+												<td><input type="text" name="age" disabled class="textInput" value='.date_format($date,"d/m/Y").'></td>
 											</tr>
+
 										</table>
 							 		 </div>
 									 <div align = "center">
@@ -144,8 +137,7 @@
 							$_SESSION['IdAdherent']=$rowsId['IdAdherent'];
 
 
-							// ENLEVER LE TRAIT BLANC
-							//RESERVATION SI AUCUNE RESERVATION ALORS NE RIEN AFFICHER ///.
+							// SI AUCUNE RESERVATION ALORS NE RIEN AFFICHER ///.
 							$resultat="SELECT cote  FROM reserve WHERE IdAdherent = '".$_SESSION['IdAdherent']."'" ;
 							$rows=$mysqli->query($resultat) or die();
 							$nbreLignes=mysqli_num_rows($rows);
@@ -155,15 +147,13 @@
 										<table width=100%>
 											<legend> Réservations en cours</legend>
 											 <tr>
-											 <td width = 30% class="text"><b>Titre  </td>
-											 <td width = 10% class="text"><b>Etat  </td>
-   											<td width = 30% class="text"><b>Date de retour   </td>
-												<td width = 30% class="text"><b>   </td>
+												<td width = 30% class="text"><b>Titre  </td>
+												<td width = 10% class="text"><b>Etat  </td>
 												</tr>
 											<tr>';
 
 								while($reservation=mysqli_fetch_assoc($rows)){
-								$sql="SELECT titre FROM oeuvre WHERE cote= ".$reservation['cote'].""; // On cherche le titre pour la réservation
+								$sql="SELECT titre FROM oeuvre WHERE cote= ".$reservation['cote'].""; // A MODIFIER APRES l'etat prêt
 								$request=$mysqli->query($sql) or die();
 								$titre=mysqli_fetch_assoc($request);
 								echo '<td width = "30%" class="text"><b>'.$titre['titre'].' </td>';
@@ -181,13 +171,12 @@
 									</tr>';
 								}
 
-								echo"<td> <input  type='submit' onclick=\"supprimerReserve()\"  value='Annuler'/></td>";
 							}
 							echo "</table>
 							</div>";
 
 						}
-							$resultat=" SELECT * FROM exemplaire WHERE IdAdherent IS NOT NULL AND IdAdherent = '".$_SESSION['IdAdherent']."' AND DateRetour IS NOT NULL" ;
+							$resultat=" SELECT * FROM exemplaire WHERE IdAdherent IS NOT NULL AND IdAdherent = '".$_SESSION['IdAdherent']."'" ;
 							$rows=$mysqli->query($resultat) or die();
 							$nbreLignes=mysqli_num_rows($rows);
 							if($nbreLignes>0){
